@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { NotesService } from '../_services/notes.service';
+import { error } from 'protractor';
+import { NoteModel } from '../_models/note.model';
 
 @Component({
   selector: 'app-note',
@@ -7,19 +9,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
-  notes: any;
+  notes: NoteModel[];
 
-  constructor(private _http: HttpClient) { }
+  constructor(private notesService: NotesService) { }
 
   ngOnInit() {
     this.getNotes();
   }
 
   getNotes() {
-    this._http.get('http://private-9aad-note10.apiary-mock.com/notes').subscribe(response => {
-      this.notes = response;
+    this.notes = this.notesService.getNotes();
+
+  }
+
+  saveNote(note: any) {
+    this.notesService.sendNote(note).subscribe(next => {
+      console.log('saved');
+      
     }, error => {
-      console.log(error);
-    });
+      console.log('error');
+      
+    })
   }
 }
