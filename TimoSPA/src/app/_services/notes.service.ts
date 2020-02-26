@@ -12,7 +12,8 @@ export class NotesService {
 
 constructor(private _http: HttpClient) { }
   baseUrl = 'http://private-9aad-note10.apiary-mock.com/';
-  data = [{
+
+  mockData = [{
     "id": 1, "title": "Jogging in park"
   }, {
     "id": 2, "title": "Pick-up posters from post-office"
@@ -35,11 +36,16 @@ constructor(private _http: HttpClient) { }
   }, {
     "id": 11, "title": "Pick-up posters from post-office"
   }];
+
+
   getNotes(): Observable<NoteModel[]> {
-    return of(this.data);
-    // return this._http.get<NoteModel[]>(this.baseUrl + 'notes');
+    // use next statement to retrieve more data as real service returns array with only 2 items
+    // return of(this.data);
+    return this._http.get<NoteModel[]>(this.baseUrl + 'notes');
   }
 
+  // service returns instance of NoteModel with id: 2 and title hard-coded,
+  // that's why you see only 'Pick-up posters from post-office' in EditorComponent even you clicked on different Note
   getNoteById(noteId: number): Observable<NoteModel> {
     return this._http.get<NoteModel>(this.baseUrl + 'notes/' + noteId);
   }
