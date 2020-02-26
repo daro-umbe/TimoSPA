@@ -1,0 +1,22 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>New note text area</h1>
+      <p class="lead text-muted" i18n>Let me know what would you like me to remember. Add a note here and do not hesitate to save it. I'm here to serve you.</p>
+      <form #newNoteForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="submit()">
+        <div class="container">
+          <div class="row m-1 justify-content-center">
+            <input type="text" style="width: 400px; height:auto;" placeholder="Your new note ..." required class="form-control mr-sm-2" name="title" [(ngModel)]="model.title">
+          </div>
+          <div class="row m-1 justify-content-center">
+            <input [disabled]="!newNoteForm.valid || previousNoteTitle === model.title" class="btn btn-primary my-2 my-sm-0" type="submit" [value]="(model.id ? 'Edit note' : 'Save note')">
+            <button (click)="onResetNoteTitle()" *ngIf="previousNoteTitle !== model.title" type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- <input  class="btn btn-primary my-2 my-sm-0" type="submit" value="Reset note text"> -->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

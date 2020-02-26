@@ -1,4 +1,11 @@
+
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { NoteModel } from './_models/note.model';
+
+interface AppState {
+  post: NoteModel;
+}
 
 @Component({
   selector: 'app-root',
@@ -7,4 +14,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TimoSPA';
+
+  constructor(private store: Store<AppState>) {}
 }

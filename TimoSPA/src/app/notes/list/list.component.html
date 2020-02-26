@@ -1,0 +1,19 @@
+<div class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let note of notes$ | async">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <p class="card-text">{{note.title}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/editor/', note.id]">View/Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteNote(note)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
