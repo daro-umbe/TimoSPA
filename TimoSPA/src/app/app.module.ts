@@ -10,7 +10,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
-import { NoteComponent } from './notes/note/note.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EditorComponent } from './notes/editor/editor.component';
 import { NotesService } from './_services/notes.service';
@@ -26,7 +25,6 @@ import { NotesEffects } from './notes/state/list.effects';
 @NgModule({
    declarations: [
       AppComponent,
-      NoteComponent,
       NavbarComponent,
       EditorComponent,
       AboutComponent,

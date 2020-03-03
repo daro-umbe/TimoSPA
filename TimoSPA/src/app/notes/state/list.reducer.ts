@@ -14,11 +14,11 @@ const initialState: NoteState = {
     error: ''
 };
 
-const getNotesFeatureState = createFeatureSelector<NoteState>('notes');
+const getNotesFeatureState = createFeatureSelector<NoteState>('notees');
 
 export const getNotes = createSelector(
     getNotesFeatureState,
-    state => state.notes
+    state => state &&  state.notes
 );
 
 export const getCurrentNote = createSelector(
@@ -36,6 +36,7 @@ export function reducer(state = initialState, action: NotesActions): NoteState {
         case NoteActionTypes.GetNotes:
             return {
                 ...state,
+                notes: []
             };
         case NoteActionTypes.GetNotesSuccess:
             return {
@@ -53,6 +54,7 @@ export function reducer(state = initialState, action: NotesActions): NoteState {
         case NoteActionTypes.GetNoteById:
             return {
                 ...state,
+                currentNote: null
             };
         case NoteActionTypes.GetNoteByIdSuccess:
             return {
@@ -89,8 +91,6 @@ export function reducer(state = initialState, action: NotesActions): NoteState {
                 currentNote: null
             };
         case NoteActionTypes.DeleteNoteSuccess:
-            console.log('deleted note');
-            
             return {
                 ...state,
                 currentNote: null
